@@ -1,6 +1,6 @@
 # Web app for managing laundry at home!
 
-Super simple web app for managing laundry at home, feel free to steal from it or use it to solve laundry handling conflicts at your house :)
+Super simple web app in C#/.NET Core for managing laundry at home, feel free to steal from it or use it to solve laundry handling conflicts at your house :)
 
 ## Setup / Install
 Run the standard migrations on the sqlite database, i.e. 

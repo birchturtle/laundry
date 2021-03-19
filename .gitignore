@@ -11,6 +11,11 @@ autom4te.cache/
 tarballs/
 test-results/
 
+# Custom stuff
+appsettings.json
+appsettings.Development.json
+app.db
+
 # Mac bundle stuff
 *.dmg
 *.app
