@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using laundry.Data;
 
 namespace laundry.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210318105546_newLaundry")]
+    partial class newLaundry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,9 +220,6 @@ namespace laundry.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Attention")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("Color")
                         .HasColumnType("INTEGER");
 
@@ -233,16 +232,15 @@ namespace laundry.Data.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Owner")
+                    b.Property<string>("OwnerId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TypeOfWash")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Laundry");
                 });
@@ -296,6 +294,15 @@ namespace laundry.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("laundry.Data.Laundry", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+
+                    b.Navigation("Owner");
                 });
 #pragma warning restore 612, 618
         }

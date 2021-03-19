@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using laundry.Data;
 
 namespace laundry.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210319093037_user_string_and_model_binding")]
+    partial class user_string_and_model_binding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,9 +220,6 @@ namespace laundry.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Attention")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("Color")
                         .HasColumnType("INTEGER");
 
@@ -237,9 +236,6 @@ namespace laundry.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TypeOfWash")
                         .HasColumnType("TEXT");
 
                     b.HasKey("ID");

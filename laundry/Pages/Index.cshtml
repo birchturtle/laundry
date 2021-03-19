@@ -1,10 +1,126 @@
-﻿@page
-@model IndexModel
+@page
+@model laundry.Pages.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Laundry App no. 1</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<!--<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Laundry[0].Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Laundry[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Laundry[0].Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Laundry[0].LastUpdated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Laundry[0].Comment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>-->
+@foreach (var item in Model.Laundry) {
+    @if(item.Attention) {
+            <div class="card bg-warning">
+        <div class="card-body">
+            @if(item.Color){
+                <h5 class="card-title">
+                    Color wash
+                </h5>
+                }
+            else {
+                <h5 class="card-title">
+                    Non-color wash
+                </h5>
+            }
+            <ul class="list-group list-group-flush bg-warning">
+                <li class="list-group-item"> Washing: @Html.DisplayFor(modelItem => item.TypeOfWash)</li>
+                <li class="list-group-item"> Wash begun at @Html.DisplayFor(modelItem => item.Created)</li>
+                <li class="list-group-item">Created by @Html.DisplayFor(modelItem => item.Owner)</li>
+                <li class="list-group-item">Currently: @Html.DisplayFor(modelItem => item.Status)</li>
+                <li class="list-group-item">Last update @Html.DisplayFor(modelItem => item.LastUpdated)</li>
+            </ul>
+            @if(item.Comment != ""){
+                <p class="card-text">
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </p>
+            }
+            <a asp-page="./Edit" asp-route-id="@item.ID" class="btn btn-primary">Edit</a>
+            <a asp-page="./Details" asp-route-id="@item.ID" class="btn btn-primary">Details</a>
+            <a asp-page="./Delete" asp-route-id="@item.ID" class="btn btn-primary">Delete</a>
+        </div>
+    </div>
+    <br />
+    }
+    else {
+            <div class="card bg-success">
+        <div class="card-body">
+            @if(item.Color){
+                <h5 class="card-title">
+                    Color wash
+                </h5>
+                }
+            else {
+                <h5 class="card-title">
+                    Non-color wash
+                </h5>
+            }
+                <!--@Html.DisplayFor(modelItem => item.Color)-->
+            <ul class="list-group list-group-flush bg-success">
+                <li class="list-group-item"> Washing: @Html.DisplayFor(modelItem => item.TypeOfWash)</li>
+                <li class="list-group-item"> Wash begun at @Html.DisplayFor(modelItem => item.Created)</li>
+                <li class="list-group-item">Created by @Html.DisplayFor(modelItem => item.Owner)</li>
+                <li class="list-group-item">Currently: @Html.DisplayFor(modelItem => item.Status)</li>
+                <li class="list-group-item">Last update @Html.DisplayFor(modelItem => item.LastUpdated)</li>
+            </ul>
+            @if(item.Comment != ""){
+                <p class="card-text">
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </p>
+            }
+            <a asp-page="./Edit" asp-route-id="@item.ID" class="btn btn-primary">Edit</a>
+            <a asp-page="./Details" asp-route-id="@item.ID" class="btn btn-primary">Details</a>
+            <a asp-page="./Delete" asp-route-id="@item.ID" class="btn btn-primary">Delete</a>
+        </div>
+    </div>
+    <br />
+    }
+}
+@*         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    <!--</tbody>
+</table>--> *@
