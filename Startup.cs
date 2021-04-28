@@ -72,45 +72,10 @@ namespace laundry
             app.UseAuthentication();
             app.UseAuthorization();
 
-/*             app.MapWhen(
-                context => 
-                    context.Request.Method == "GET" &&
-
-                    
-                    context.Request.Path == "/Api/Cron",
-                config =>
-                    config.Use(async (context, next) => {
-                        Cronie cronie = new Cronie(new ApplicationDbContext());
-                        await context.Response.WriteAsync(cronie.CronJob());
-                    } 
-                )
-            ); */
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
             });
         }
- /*        class Cronie {
-        private readonly laundry.Data.ApplicationDbContext _context;
-
-        public Cronie(laundry.Data.ApplicationDbContext context)
-        {
-            _context = context;
-        }
-        public IList<Laundry> Laundry { get;set; }
-            public string CronJob() {
-            IEnumerable<laundry.Data.Laundry> NeedsAttention = 
-                from wash in _context.Laundry
-                where wash.Attention == true
-                select wash;
-            
-            foreach(var wash in NeedsAttention) {
-                Console.WriteLine(wash.Status);
-            }
-            
-            return $"200 OK\n\r\n\r";
-        }
-        } */
     }
 }

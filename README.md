@@ -2,6 +2,10 @@
 
 Super simple web app in C#/.NET Core for managing laundry at home, feel free to steal from it or use it to solve laundry handling conflicts at your house :)
 
+Usage should be fairly self-explanatory, you add a wash, and set up a cronjob for https://your-domain.com/Cronie and the app checks at the given interval for whether there are unfinished (not "Done_done") washes that have not been updated in more than 3.5 hours, and, if there are, an e-mail will be sent to all registered users with a heads-up about it!
+
+"UI-signals", i.e. washes requiring attention is given a bright yellow color in the web-interface as well.
+
 ## Setup / Install
 Run the standard migrations on the sqlite database, i.e. 
 `dotnet ef migrations add whatever_you_feel_for`
@@ -15,7 +19,5 @@ Shamelessly uses default Identity for all auth-purposes.
 
 ## ToDo
 Looks and functionality is very basic, on purpose, so it's easy to change stuff and style it the way you want.
-On my to-do list is first of all adding e-mail notifications; Currently the app gives basic UI signals *on* the website, i.e. "a laundry" is in red if it needs attention; attention is need when the status has not been updated in 3.5 hours (and status is not done_done).
-First up is therefore to add a cron-able endpoint somewhere to run every 30 min or so, and if any "laundries" are found that require attention, an e-mail is sent to all users.
 
 That's it for me currently - thanks for reading! :)
